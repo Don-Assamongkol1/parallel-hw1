@@ -29,7 +29,7 @@ void create_output(char* output_filename, graph_t* graph) {
     }
     fclose(output_file);
 
-    // clean up
+    // clean up memory
     for (int i = 0; i < graph->N; i++) {
         free(graph->dist[i]);
     }

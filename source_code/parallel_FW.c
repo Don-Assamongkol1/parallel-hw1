@@ -25,24 +25,40 @@ int main(int argc, char **argv) {
     int num_threads = atoi(argv[2]);
 
     /* STEP 1: PROCESS INPUT */
+    printf("beginning step 1\n");
     graph_t *graph = calloc(1, sizeof(graph_t));
     process_input(input_filename, graph);
+    printf("finished with step 1\n");
 
     /* STEP 2: RUN FW */
+    printf("beginning step 2\n");
     graph->dist = graph->adjacency_matrix;
 
     StopWatch_t *stopwatch = malloc(sizeof(StopWatch_t));
     startTimer(stopwatch);
+
+    printf("before run_fw_parallel \n");
     run_fw_parallel(graph, num_threads);
+    printf("after run_fw_parallel \n");
+
+    
     stopTimer(stopwatch);
     double elapsed_time = getElapsedTime(stopwatch);
+    free(stopwatch);
     printf("elapsed_time: %f\n", elapsed_time);
 
+    printf("finished with step 2\n");
+
+
     /* STEP 3: CREATE OUTPUT */
+    printf("beginning step 3\n");
     char file_index = input_filename[0];  // filenames are like 1_sample_input.txt
     char output_filename[200] = "X_experimental_output_parallel.txt";
     output_filename[0] = file_index;
     create_output(output_filename, graph);
+
+    printf("finished with step 2\n");
+
 
     printf("End of parallel_FW\n");
 }

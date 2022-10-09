@@ -2,27 +2,35 @@ import subprocess
 
 print("beginning test module...")
 
+# run this file to execute the tests
+# eg. python3 test_module.py
+
 # compile the code
 subprocess.call(
     [
-        "gcc",
-        "-Wall",
-        "-Werror",
-        "-O3",
-        "parallel_hw1.c",
-        "-o",
-        "customer_software_serial",
+        "gcc", 
+        -Wall,
+        -Werror,
+        -O3 parallel_FW.c,
+        input_module.c,
+        output_module.c,
+        fw_parallel_module.c,
+        stopwatch.c,
+        -pthread,
+        -o ,
+        parallel_FW
     ]
 )
 
 # run the serial program for various inputs
-input_filenames = ["sample_input.txt"]
+input_filenames = ["1_sample_input.txt"]
 
-for input_filename in input_filenames:
-    subprocess.call(["./customer_software_serial", input_filename, "128"])
+### run serial here
 
 
 # run the parallel program for various inputs
+for input_filename in input_filenames:
+    subprocess.call(["./parallel_FW", input_filename, "2"])
 
 
 print("finished running test module...")
