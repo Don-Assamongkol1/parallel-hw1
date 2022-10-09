@@ -1,3 +1,4 @@
-0 i i 
-i 0 i 
-i i 0 
+0 i i i 
+i 0 i i 
+i i 0 i 
+i i i 0 

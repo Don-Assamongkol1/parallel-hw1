@@ -8,7 +8,8 @@
 #include "stopwatch.h"
 #include "types.h"
 
-// compile using: gcc -Wall -Werror -O3 parallel_FW.c input_module.c output_module.c fw_parallel_module.c stopwatch.c -o parallel_FW
+// compile using: gcc -Wall -Werror -O3 parallel_FW.c input_module.c output_module.c fw_parallel_module.c stopwatch.c -pthread -o parallel_FW
+// run using: ./parallel_FW 1_sample_input.txt 128
 
 int main(int argc, char **argv) {
     printf("Beginning parallel_FW\n");
