@@ -36,6 +36,13 @@ void run_fw_parallel(graph_t* graph, int num_threads) {
     thread_data_t thr_args[num_threads_to_spawn];
     pthread_t thread_ids[num_threads_to_spawn]; // so we can keep track of our threads
 
+    for (int i = 0; i < num_threads_to_spawn; i++) {
+        if ((pthread_create(thread_ids[i]), NULL, &thr_func, THREAD_ARGS) != 0) {
+            printf("error creating thread!\n");
+            return 1;
+        }
+    }
+
 
     // now, get threads executing on each k
 
@@ -61,7 +68,7 @@ void run_fw_parallel(graph_t* graph, int num_threads) {
     }
 
 
-    // join - block until all threads complete
+    // join the threads back together
     for (i = 0; i < num_threads_to_spawn; i++) {
         pthread_join(thread_ids[i], NULL);
     }

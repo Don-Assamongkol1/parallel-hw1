@@ -9,6 +9,7 @@
 #include "types.h"
 
 // compile using: gcc -Wall -Werror -O3 serial_FW.c input_module.c output_module.c fw_serial_module.c stopwatch.c -o serial_FW
+// run using: ./serial_FW 1_sample_input.txt 128
 
 int main(int argc, char **argv) {
     printf("Beginning serial_FW\n");
