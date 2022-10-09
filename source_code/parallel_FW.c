@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
     printf("elapsed_time: %f\n", elapsed_time);
 
     /* STEP 3: CREATE OUTPUT */
-    char file_index = input_filename[0];  // filenames are like 1_sample_input
+    char file_index = input_filename[0];  // filenames are like 1_sample_input.txt
     char output_filename[200] = "X_experimental_output_parallel.txt";
     output_filename[0] = file_index;
     create_output(output_filename, graph);
