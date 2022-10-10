@@ -1,9 +1,9 @@
+#!/bin/python3 
+
 import subprocess
 import test_generator
 import os
 import filecmp
-
-# run using python3 test_module.py
 
 print("generating test cases")
 Ns_to_generate = [16, 32, 64, 128, 256, 512, 1024]
@@ -22,8 +22,8 @@ Ns = []
 serial_times = []
 for filename in filenames:
     rv = subprocess.run(["./serial_FW", filename, "1"], capture_output=True, text=True)
-    N = rv.args[1].split("_")[1]
-    time = rv.stdout.split(":")[1].strip() # time in ms 
+    N = int(rv.args[1].split("_")[1])
+    time = int(rv.stdout.split(":")[1].strip()) # time in ms 
     
     Ns.append(N)
     serial_times.append(time)
@@ -36,8 +36,8 @@ parallel_overhead_times = []
 print("\nrunning parallel overhead execution T=1")
 for filename in filenames:
     rv = subprocess.run(["./parallel_FW", filename, "1"], capture_output=True, text=True)
-    N = rv.args[1].split("_")[1]
-    time = rv.stdout.split(":")[1].strip() # time in ms 
+    N = int(rv.args[1].split("_")[1])
+    time = int(rv.stdout.split(":")[1].strip()) # time in ms 
 
     Ns.append(N)
     parallel_overhead_times.append(time)
@@ -52,8 +52,8 @@ for filename in filenames:
 
     for T in Ts_to_test:
         rv = subprocess.run(["./parallel_FW", filename, str(T)], capture_output=True, text=True)
-        N = rv.args[1].split("_")[1]
-        time = rv.stdout.split(":")[1].strip() # time in ms 
+        N = int(rv.args[1].split("_")[1])
+        time = int(rv.stdout.split(":")[1].strip()) # time in ms 
 
         thread_times.append(time)
 
