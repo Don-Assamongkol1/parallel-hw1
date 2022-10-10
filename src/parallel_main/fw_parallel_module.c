@@ -15,7 +15,7 @@ typedef struct _thread_args_t {
 pthread_barrier_t barrier;
 
 /* this is the function that each thread executes */
-void *thr_func(void *input) {
+void* thr_func(void* input) {
     thread_args_t *args = (thread_args_t *) input;
     int start_row = args->start_row;
     int end_row = args->end_row;
@@ -60,8 +60,6 @@ int run_fw_parallel(graph_t* graph, int num_threads) {
             return 1;
         }
     }
-    pthread_barrier_destroy(&barrier);
-
 
     // printf("before joining threads\n");
     void* status;
@@ -71,6 +69,7 @@ int run_fw_parallel(graph_t* graph, int num_threads) {
             return 1;
         }
     }
+    pthread_barrier_destroy(&barrier);
     
     return EXIT_SUCCESS;
 }

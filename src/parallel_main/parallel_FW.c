@@ -14,9 +14,8 @@
 int main(int argc, char **argv) {
     printf("Beginning parallel_FW\n");
 
-    /* Parse command line args */
     if (argc != 3) {
-        /* EXAMPLE: ./customer_software_serial sample_input.txt 128 */
+        /* Exected Input: ./parallel_FW tests/1_sample_input.txt 2 */
         printf("ERROR!: expected two arguments: thread count and input filename\n");
         exit(1);
     }
