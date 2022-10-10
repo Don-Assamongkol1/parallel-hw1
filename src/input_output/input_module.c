@@ -15,7 +15,6 @@ void process_input(char *filename, graph_t *graph) {
 
     char *ptr = strtok(line, " ");
     int N = atoi(ptr);
-    printf("have N=%d\n", N);
     graph->N = N;
 
     graph->adjacency_matrix = calloc(graph->N, sizeof(int *));

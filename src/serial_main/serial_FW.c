@@ -13,8 +13,6 @@
 // run using: ./serial_FW 1_sample_input.txt 128
 
 int main(int argc, char **argv) {
-    printf("Beginning serial_FW\n");
-
     /* Parse command line args */
     if (argc != 3) {
         /* EXAMPLE: ./customer_software_serial sample_input.txt 128 */
@@ -40,9 +38,5 @@ int main(int argc, char **argv) {
     printf("elapsed_time: %f\n", elapsed_time);
 
     /* STEP 3: CREATE OUTPUT */
-    printf("beginning step 3\n");
     create_output(false, num_threads, graph);
-    printf("finished with step 2\n");
-
-    printf("End of serial_FW\n");
 }

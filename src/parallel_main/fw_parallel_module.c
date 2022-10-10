@@ -38,7 +38,6 @@ void* thr_func(void* input) {
 
 
 int run_fw_parallel(graph_t* graph, int num_threads) {
-    // printf("beginning run_fw_parallel\n");
     int num_threads_to_spawn = (graph->N <= num_threads) ? graph->N : num_threads;
     int rows_per_thread = graph->N / num_threads_to_spawn;
 
@@ -47,21 +46,17 @@ int run_fw_parallel(graph_t* graph, int num_threads) {
     pthread_t thread_ids[num_threads_to_spawn]; // so we can keep track of our threads
 
     pthread_barrier_init(&barrier, NULL, num_threads_to_spawn);
-    // printf("before spawning threads\n");
     for (int i = 0; i < num_threads_to_spawn; i++) {
-        // printf("assigning thread args \n");
         thr_args[i].start_row = i * rows_per_thread;
         thr_args[i].end_row = (i + 1) * rows_per_thread;
         thr_args[i].graph = graph;
 
-        // printf("before pthread_create \n");
         if (pthread_create(&(thread_ids[i]), NULL, &thr_func, (void *) &thr_args[i]) != 0) {
             printf("error creating thread!\n");
             return 1;
         }
     }
 
-    // printf("before joining threads\n");
     void* status;
     for (int i = 0; i < num_threads_to_spawn; i++) {
         if (pthread_join(thread_ids[i], &status) != 0) {
