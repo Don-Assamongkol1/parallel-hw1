@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "fw_serial_module.h"
 #include "input_module.h"
@@ -22,7 +23,7 @@ int main(int argc, char **argv) {
     }
 
     char *input_filename = argv[1];
-    // int num_threads = atoi(argv[2]);
+    int num_threads = 1;
 
     /* STEP 1: PROCESS INPUT */
     graph_t *graph = calloc(1, sizeof(graph_t));
@@ -39,10 +40,9 @@ int main(int argc, char **argv) {
     printf("elapsed_time: %f\n", elapsed_time);
 
     /* STEP 3: CREATE OUTPUT */
-    char file_index = input_filename[0];  // filenames are like 1_sample_input
-    char output_filename[200] = "X_experimental_output_serial.txt";
-    output_filename[0] = file_index;
-    create_output(output_filename, graph);
+    printf("beginning step 3\n");
+    create_output(false, num_threads, graph);
+    printf("finished with step 2\n");
 
     printf("End of serial_FW\n");
 }

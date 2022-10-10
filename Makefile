@@ -6,7 +6,7 @@ serial: $(SRCS_SERIAL) ./src/include
 	gcc $(CFLAGS) -o serial_FW $(SRCS_SERIAL)
 
 parallel: $(SRCS_PARALLEL) ./src/include 
-	gcc $(CFLAGS) -o parallel_FW $(SRCS_SERIAL)
+	gcc $(CFLAGS) -o parallel_FW $(SRCS_PARALLEL)
 
 clean:
 	rm serial_FW parallel_FW
