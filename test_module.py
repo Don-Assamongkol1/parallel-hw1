@@ -61,6 +61,7 @@ for filename in filenames:
             print(f"for N={N}", thread_times)
     
 print("verifying that outputs are the same...")
+# you could verify for alll, but I figured this is exhaustive
 files_to_compare = [
     "tests/N_16_T_1_serial_output.txt",
     "tests/N_16_T_1_parallel_output.txt", 
@@ -76,10 +77,3 @@ for file in files_to_compare:
         print("Error! Did not correctly generate dist array between serial/parallel versions of our code!")
 
 print("Done!")
-
-
-# input = 
-# want to then process this into two graphs: 
-# Graph 1: Parallel Overhead. Plot parallel with T=1 against serial. N is on x axis, time is on y axis
-
-# Graph 2: Parallel Speedup. Plot serial graph (N vs time) and a separate curve for each parallel T=2,4,8,...
