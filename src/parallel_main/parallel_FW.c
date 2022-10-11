@@ -27,15 +27,7 @@ int main(int argc, char **argv) {
 
     /* STEP 2: RUN FW */
     graph->dist = graph->adjacency_matrix;
-
-    StopWatch_t *stopwatch = malloc(sizeof(StopWatch_t));
-    startTimer(stopwatch);
     run_fw_parallel(graph, num_threads);
-    
-    stopTimer(stopwatch);
-    double elapsed_time = getElapsedTime(stopwatch);
-    free(stopwatch);
-    printf("elapsed_time: %f\n", elapsed_time);
 
     /* STEP 3: CREATE OUTPUT */
     create_output(true, num_threads, graph);

@@ -2,6 +2,7 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "stopwatch.h"
 
 // note, I very closely followed the sample code provided here: https://randu.org/tutorials/threads/
 
@@ -45,6 +46,10 @@ int run_fw_parallel(graph_t* graph, int num_threads) {
     thread_args_t thr_args[num_threads_to_spawn]; // must memory allocate the arg to each thread
     pthread_t thread_ids[num_threads_to_spawn]; // so we can keep track of our threads
 
+    // start our timer
+    StopWatch_t *stopwatch = malloc(sizeof(StopWatch_t));
+    startTimer(stopwatch);
+
     pthread_barrier_init(&barrier, NULL, num_threads_to_spawn);
     for (int i = 0; i < num_threads_to_spawn; i++) {
         thr_args[i].start_row = i * rows_per_thread;
@@ -65,6 +70,12 @@ int run_fw_parallel(graph_t* graph, int num_threads) {
         }
     }
     pthread_barrier_destroy(&barrier);
+
+    // stop our timer    
+    stopTimer(stopwatch);
+    double elapsed_time = getElapsedTime(stopwatch);
+    printf("elapsed_time: %f\n", elapsed_time);
+    free(stopwatch);
     
     return EXIT_SUCCESS;
 }

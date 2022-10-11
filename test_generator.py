@@ -2,7 +2,7 @@ from random import randint
 import os.path 
 
 def generate_matrix_file(N):
-    filename = f"tests/N_{N}_input.txt"
+    filename = f"tests/N_{N}_input.txt" # feed in relative path
 
     if os.path.isfile(filename):  # don't regenerate needlessly
         return filename 

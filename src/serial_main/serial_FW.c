@@ -30,12 +30,7 @@ int main(int argc, char **argv) {
     /* STEP 2: RUN FW */
     graph->dist = graph->adjacency_matrix;
 
-    StopWatch_t *stopwatch = malloc(sizeof(StopWatch_t));
-    startTimer(stopwatch);
     run_fw_serial(graph);
-    stopTimer(stopwatch);
-    double elapsed_time = getElapsedTime(stopwatch);
-    printf("elapsed_time: %f\n", elapsed_time);
 
     /* STEP 3: CREATE OUTPUT */
     create_output(false, num_threads, graph);
